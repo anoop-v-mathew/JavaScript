@@ -1,3 +1,8 @@
+"use strict";
+
+/* global QUnit */
+/* global factorial */
+
 QUnit.test( "Factorial of 0 returns 1", function( assert ) {
   assert.ok( factorial(0) == 1, "Passed!" );
 });

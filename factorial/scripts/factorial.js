@@ -2,7 +2,6 @@
 
 function factorial(arg) {
 
-    "use strict";
 
     var f, n = 0;
 
