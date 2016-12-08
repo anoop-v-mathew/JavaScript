@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title> Factorial </title>
-</head>
-<body>
-Number : <input id="num" type="text" name="number"><br>
-<button onclick="document.getElementById('demo').textContent = factorial(document.getElementById('num').value)">Calculate Factorial</button><br>
-Factorial : <p id="demo">Please enter a number</p>
+	<head>
+		<title>Factorial</title>
+	</head>
+	<body>
+		<p>Number : <input id="num" type="text" name="number"></p>
+		<p>
+			<button onclick="printFactorial(document.getElementById('num').value)">
+				Calculate Factorial
+			</button>
+		</p>
+		<div id="output">Please enter a number in the textbox</div>
 
-<script src="scripts/factorial.js"></script>
-</body>
+		<script src="scripts/factorial.js"></script>
+		<script>
+		/* global factorial*/
+		/* exported printFactorial */
+		function printFactorial(num) {
+
+			"use strict";
+			
+			var f = factorial(num);
+			var s = "";
+			
+			s = (isNaN(f)) ? "Factorial undefined" : "Factorial: "+f;
+			
+			document.getElementById('output').textContent = s;
+		}
+		</script>
+	</body>
 </html>
