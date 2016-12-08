@@ -1,7 +1,8 @@
 /* exported factorial */
 
-function factorial(arg) {
+"use strict";
 
+function factorial(arg) {
 
     var f, n = 0;
 
