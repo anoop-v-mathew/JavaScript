@@ -6,6 +6,10 @@
 
 /* exported factorial */
 
+/* global logMsg */
+/* global INFO */
+/* global WARN */
+
 "use strict";
 
 /**
@@ -16,15 +20,20 @@
 * @example
 * var n = 5;
 * console.log(factorial(5)); // 120
+*
 */
 function factorial(arg) {
 
     var f = 0; 
     var n = 0;
 
+    logMsg("arg: " + arg, INFO);
+    logMsg("typeof arg: " + (typeof arg), INFO);
+    
     // check if argument is boolean as Number() converts boolean to number
     if (typeof arg === "boolean") {
         n = NaN;
+        logMsg("argument is not a number: " + arg + " (" + (typeof arg) + ")", WARN);
     } else {
         n = Number(arg); // convert argument to number
     }
@@ -34,7 +43,8 @@ function factorial(arg) {
         // return 1 if argument is 0, else recurse
         f = (n === 0) ? 1 : n * factorial(n - 1); 
     } else {
-        f = NaN;	
+        f = NaN;
+        logMsg("factorial cannot be calculated for '" + arg + "'", WARN);    
     }
 
     return f;

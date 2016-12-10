@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: factorial.js</title>
+    <title>JSDoc: Source: log.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: factorial.js</h1>
+    <h1 class="page-title">Source: log.js</h1>
 
     
 
@@ -27,55 +27,59 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @fileOverview Factorial function
+ * @fileOverview Logging function
  * @author Anoop V. Mathew (anoop.v.mathew@gmail.com)
  * @version 1.0
  */
 
-/* exported factorial */
+/* exported logMsg */
 
-/* global logMsg */
-/* global INFO */
-/* global WARN */
+/* global DEBUG_LEVEL */
+/* global console */
 
 "use strict";
 
+// Debug Levels
+
+/** @const [number LOG]*/
+const LOG = 1; 
+/** @const [number INFO]*/
+const INFO = 2;
+/** @const [number WARN]*/
+const WARN = 3;
+/** @const [number ERROR]*/
+const ERROR = 4;
+
 /**
-* Calculate the factorial of &lt;tt>arg&lt;/tt>, if it is a non-negative integer.
-* Return NaN otherwise
-* @param {number} arg The number for which the factorial will be calculated
-* @returns {number}
+* Log messages to the console if global DEBUG_LEVEL is positive
+* @param {string} message Message to be logged
+* @param {string} [level=LOG] Optional argument specifying the level of the log message 
+* - LOG, INFO, WARN, ERROR
 * @example
-* var n = 5;
-* console.log(factorial(5)); // 120
+* log("this is a log message", INFO);
 *
 */
-function factorial(arg) {
+function logMsg(message, level=0) {
+    if (DEBUG_LEVEL > 0) {
 
-    var f = 0; 
-    var n = 0;
+        switch (Number.parseInt(level)) {
+            case LOG:
+                if (DEBUG_LEVEL &lt;= LOG) console.log(message);
+                break;
+            case INFO: 
+                if (DEBUG_LEVEL &lt;= INFO) console.info(message);
+                break;
+            case WARN: 
+                if (DEBUG_LEVEL &lt;= WARN) console.warn(message);
+                break;
+            case ERROR:
+                if (DEBUG_LEVEL &lt;= ERROR) console.error(message);
+                break;
+            default:
+                console.log(message);
+        }
 
-    logMsg("arg: " + arg, INFO);
-    logMsg("typeof arg: " + (typeof arg), INFO);
-    
-    // check if argument is boolean as Number() converts boolean to number
-    if (typeof arg === "boolean") {
-        n = NaN;
-        logMsg("argument is not a number: " + arg + " (" + (typeof arg) + ")", WARN);
-    } else {
-        n = Number(arg); // convert argument to number
     }
-
-    // factorial is valid only for non-negative integers
-    if (Number.isInteger(n) &amp;&amp; (n >= 0)) { 
-        // return 1 if argument is 0, else recurse
-        f = (n === 0) ? 1 : n * factorial(n - 1); 
-    } else {
-        f = NaN;
-        logMsg("factorial cannot be calculated for '" + arg + "'", WARN);    
-    }
-
-    return f;
 }</code></pre>
         </article>
     </section>
