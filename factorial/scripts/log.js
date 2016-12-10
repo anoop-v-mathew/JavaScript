@@ -24,12 +24,14 @@ const ERROR = 4;
 
 /**
 * Log messages to the console if global DEBUG_LEVEL is positive
+* <br><br><b>Note:</b> DEBUG_LEVEL is the minimum severity level of messages to be logged. 
+* <br>Therefore, DEBUG_LEVEL = WARN will also ensure logging of ERROR level messages
 * @param {string} message Message to be logged
 * @param {string} [level=LOG] Optional argument specifying the level of the log message 
 * - LOG, INFO, WARN, ERROR
 * @example
+* var DEBUG_LEVEL = INFO
 * log("this is a log message", INFO);
-*
 */
 function logMsg(message, level=0) {
     if (DEBUG_LEVEL > 0) {
