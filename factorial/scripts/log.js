@@ -22,6 +22,13 @@ const WARN = 3;
 /** @const [number ERROR]*/
 const ERROR = 4;
 
+// Ensure that calling console.log() will not throw an error if window.console doesn't exist
+if ( window.console === undefined ) { 
+    window.console = { // Define a window.console object with an empty log method
+        log: function(){} 
+    }; 
+} 
+
 /**
 * Log messages to the console if global DEBUG_LEVEL is positive
 * <br><br><b>Note:</b> DEBUG_LEVEL is the minimum severity level of messages to be logged. 
